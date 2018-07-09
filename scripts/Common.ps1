@@ -22,7 +22,7 @@ function Log-Message
          )
 
     
-    # append header to identify where the call came from for debugging purposes
+    # append header to identify where the call came from for debugging purposesF
     if ($Context -ne "")
     {
         $Message = "$Context - $Message";
@@ -3363,7 +3363,8 @@ function Login-OxaAccount
             Login-AzureRmAccount -ServicePrincipal -TenantId $AadTenantId -SubscriptionName $AzureSubscriptionName -Credential $aadCredential -ErrorAction Stop | Out-Null
     
             Log-Message "Selecting '$($AzureSubscriptionName)' subscription"
-            Select-AzureRMSubscription -SubscriptionName $AzureSubscriptionName | Out-Null
+            #Select-AzureRMSubscription -SubscriptionName $AzureSubscriptionName | Out-Null
+            Set-AzureRMContext -SubscriptionName $AzureSubscriptionName | Out-Null
         }
     }
     elseif ($AuthenticationCertificateSubject)
@@ -3379,7 +3380,8 @@ function Login-OxaAccount
         Login-AzureRmAccount -ServicePrincipal -CertificateThumbprint $certificate.thumbprint -ApplicationId $AadWebClientId -TenantId $AadTenantId -ErrorAction Stop | Out-Null
 
         Log-Message "Selecting '$($AzureSubscriptionName)' subscription"
-        Select-AzureRMSubscription -SubscriptionName $AzureSubscriptionName | Out-Null
+        #Select-AzureRMSubscription -SubscriptionName $AzureSubscriptionName | Out-Null
+        Set-AzureRMContext -SubscriptionName $AzureSubscriptionName | Out-Null
     }
     else 
     {
