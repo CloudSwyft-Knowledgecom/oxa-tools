@@ -3340,8 +3340,8 @@ function Login-OxaAccount
             Login-AzureRmAccount -ErrorAction Stop | Out-Null
 
             Log-Message "Selecting '$($AzureSubscriptionName)' subscription"
-            Select-AzureRMSubscription -SubscriptionName $AzureSubscriptionName | Out-Null
-
+            #Select-AzureRMSubscription -SubscriptionName $AzureSubscriptionName | Out-Null
+			Set-AzureRMContext -SubscriptionName $AzureSubscriptionName | Out-Null
 
             New-OxaCertificateBasedServicePrincipal -AadWebClientId $AadWebClientId `
                                                     -AuthenticationCertificateSubject $AuthenticationCertificateSubject `
